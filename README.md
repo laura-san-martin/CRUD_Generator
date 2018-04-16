@@ -29,8 +29,6 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 6. Done! Now follows some exemples of how to use your new classes!
 
-[To top](#top)
-
 <a name="exemples"/>
 
 # Exemples 
