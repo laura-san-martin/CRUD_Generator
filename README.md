@@ -1,6 +1,18 @@
 # CRUD_Generator
 Code to read the Link to SQL auto generated types and create a CRUD class for each one of them.
 
+##### Table of Contents  
+[How to use](#howto)  
+[Exemples](#exemples)
+[Files](##files)  
+[Data Base](##database)  
+[Create](###create)  
+[Read](###read)
+[Update](###update)  
+[Delete](###delete)
+[Contributions](#contributions) 
+
+<a name="howto"/>
 # How to use
 1. Copy the folder CODE to your project.
 
@@ -14,14 +26,18 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 6. Done! Now follows some exemples of how to use your new classes!
 
+<a name="exemples"/>
 # Exemples
 
+<a name="files"/>
 ### This are my files:
 ![alt text](https://github.com/laurexsan/CRUD_Generator/blob/master/Misc/01.jpg)
 
+<a name="database"/>
 ### This is my test data base:
 ![alt text](https://github.com/laurexsan/CRUD_Generator/blob/master/Misc/02.jpg)
 
+<a name="create"/>
 ## CREATE (inserting into your data base)
 
 Generated code:
@@ -61,6 +77,7 @@ How to call:
 Model.CRUD.model_artista_.Create(1, null, "Test");
 ```
 
+<a name="read"/>
 ## READ (select data)
 
 Generated code:
@@ -93,6 +110,8 @@ How to call:
 //QueryConditions recieves the value to compare, te type of comparison and the name of the atribute to compare as params
 Model.CRUD.model_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraStuffs.OperatorComparer.Equals, "id_"));
 ```
+
+<a name="update"/>
 ## UPDATE (update atribute values)
     
     Generated code:
@@ -131,7 +150,8 @@ How to call:
 //Send the id or the identity of the instance to be updated and the new atributes values
 Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 ```
- 
+
+<a name="delete"/>
 ## DELETE (delete instance in the data base)
 
 Generated code:
@@ -164,6 +184,7 @@ How to call:
 Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 ```
 
+<a name="contributions"/>
 # Contributions
 
 The ExpressionPredicateBuilder.cs file Was created by this guy [user3411327](https://stackoverflow.com/users/3411327/user3411327) 
@@ -171,5 +192,8 @@ and it was found in this Stack Overflow [thread](https://stackoverflow.com/quest
 
 **Go say thanks to him ^^/!!!**
 
-# THE END :D! 
-## ENJOY!
+**THE END :D!** 
+**ENJOY!**
+
+[*Laura San Martin*](https://github.com/laurexsan/)
+lauragabrielasan@gmail.com
