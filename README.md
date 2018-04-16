@@ -51,7 +51,7 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 ### CREATE (inserting into your data base)
 
-Generated code:
+#### Generated code:
 ```csharp
 static public Misc.Model.artista_ Create(int projeto_atual_id_, int? usuario_id_, string titulo_)
 {
@@ -83,7 +83,7 @@ static public Misc.Model.artista_ Create(int projeto_atual_id_, int? usuario_id_
 }
 ```
 
-How to call: 
+#### How to call: 
 ```csharp
 Model.CRUD.model_artista_.Create(1, null, "Test");
 ```
@@ -93,7 +93,7 @@ Model.CRUD.model_artista_.Create(1, null, "Test");
 
 ### READ (select data)
 
-Generated code:
+#### Generated code:
 ```csharp
 static public IEnumerable<Misc.Model.artista_> ReadAllWhere(params QueryConditions[] conditions)
 {
@@ -118,7 +118,7 @@ static public IEnumerable<Misc.Model.artista_> ReadAllWhere(params QueryConditio
 }
 ```
 
-How to call:
+#### How to call:
 ```csharp
 //QueryConditions recieves the value to compare, te type of comparison and the name of the atribute to compare as params
 Model.CRUD.model_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraStuffs.OperatorComparer.Equals, "id_"));
@@ -130,7 +130,7 @@ Model.CRUD.model_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraS
 
 ### UPDATE (update atribute values)
     
-    Generated code:
+#### Generated code:
 ```csharp
 static public Misc.Model.artista_ Update(int id_, int projeto_atual_id_, int? usuario_id_, string titulo_)
 {
@@ -161,7 +161,7 @@ static public Misc.Model.artista_ Update(int id_, int projeto_atual_id_, int? us
 }
  ```
  
-How to call:
+#### How to call:
 ```csharp
 //Send the id or the identity of the instance to be updated and the new atributes values
 Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
@@ -173,7 +173,7 @@ Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 
 ### DELETE (delete instance in the data base)
 
-Generated code:
+#### Generated code:
 ```csharp
 static public bool Delete(int id_)
 {
@@ -197,7 +197,7 @@ static public bool Delete(int id_)
 }
 ```
 		
-How to call:
+#### How to call:
 ```csharp    
 //Send the id or the identity of the instance to be deleted
 Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
