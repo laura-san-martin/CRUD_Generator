@@ -164,10 +164,12 @@ How to call:
 Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 ```
 
-# THE END :D! 
-## ENJOY!
+# Contributions
 
-The ExpressionPredicateBuilder.cs file Was created by this guy [user3411327](https://stackoverflow.com/users/3411327/user3411327) !
-and it was found in this Stack Overflow [thread](https://stackoverflow.com/questions/22672050/dynamic-expression-tree-to-filter-on-nested-collection-properties/22685407#22685407)
+The ExpressionPredicateBuilder.cs file Was created by this guy [user3411327](https://stackoverflow.com/users/3411327/user3411327) 
+and it was found in this Stack Overflow [thread](https://stackoverflow.com/questions/22672050/dynamic-expression-tree-to-filter-on-nested-collection-properties/22685407#22685407) !!!
 
 **Go say thanks to him ^^/!!!**
+
+# THE END :D! 
+## ENJOY!
