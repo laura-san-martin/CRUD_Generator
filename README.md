@@ -15,10 +15,12 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 6. Done! Now follows some exemples of how to use your new classes!
 
 # Exemples
-This is my test data base:
 
-This are my files:
+### This are my files:
+![alt text](https://github.com/laurexsan/CRUD_Generator/blob/master/Misc/01.jpg)
 
+### This is my test data base:
+![alt text](https://github.com/laurexsan/CRUD_Generator/blob/master/Misc/02.jpg)
 
 ## CREATE (inserting into your data base)
 
