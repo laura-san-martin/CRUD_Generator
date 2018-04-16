@@ -2,23 +2,15 @@
 Code to read the Link to SQL auto generated types and create a CRUD class for each one of them.
 
 # Table of Contents	
-[How to use](#howto)
-
+[How to use](#howto)	
 [Exemples](#exemples)	
-
-[Files](##files) 
-
-[Data Base](##database) 
-
-[Create](###create) 
-
-[Read](###read) 
-
-[Update](###update)   
-
-[Delete](###delete) 
-
-[Contributions](#contributions) 
+[Files](##files)	
+[Data Base](##database)		
+[Create](###create)	
+[Read](###read)		
+[Update](###update)		
+[Delete](###delete)		
+[Contributions](#contributions) 	
 
 <a name="howto"/>
 
@@ -51,7 +43,7 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 <a name="create"/>
 
-## CREATE (inserting into your data base)
+### CREATE (inserting into your data base)
 
 Generated code:
 ```csharp
@@ -92,7 +84,7 @@ Model.CRUD.model_artista_.Create(1, null, "Test");
 
 <a name="read"/>
 
-## READ (select data)
+### READ (select data)
 
 Generated code:
 ```csharp
@@ -127,7 +119,7 @@ Model.CRUD.model_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraS
 
 <a name="update"/>
 
-## UPDATE (update atribute values)
+### UPDATE (update atribute values)
     
     Generated code:
 ```csharp
@@ -168,7 +160,7 @@ Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 
 <a name="delete"/>
 
-## DELETE (delete instance in the data base)
+### DELETE (delete instance in the data base)
 
 Generated code:
 ```csharp
