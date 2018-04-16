@@ -22,7 +22,7 @@ This are my files:
 - CREATE (inserting into your data base)
 
 Generated code:
-
+```csharp
 		static public Misc.Model.artista_ Create(int projeto_atual_id_, int? usuario_id_, string titulo_)
 		{
     //See if finds a equal instance in the data base, if true, return it, or else insert a new one
@@ -51,15 +51,16 @@ Generated code:
 			}
 			return artista_OBJ;
 		}
-    
+```
 How to call: 
-
+```csharp
 CRUD.mdoel_artista_.Create(1, null, "Test");
+```
 
 - READ (select data)
 
 Generated code:
-
+```csharp
 		static public IEnumerable<Misc.Model.artista_> ReadAllWhere(params QueryConditions[] conditions)
 		{
 			try
@@ -81,16 +82,16 @@ Generated code:
 			}
 			return null;
 		}
-    
+  ```  
     How to call:
-    
+    ```csharp
     //QueryConditions recieves the value to compare, te type of comparison and the name of the atribute to compare as params
     Model.CRUD.mdoel_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraStuffs.OperatorComparer.Equals, "id_"));
-    
+ ```   
     - UPDATE (update atribute values)
     
     Generated code:
-    
+    ```csharp
     		static public Misc.Model.artista_ Update(int id_, int projeto_atual_id_, int? usuario_id_, string titulo_)
 		{
 			try
@@ -118,16 +119,18 @@ Generated code:
 			}
 			return null;
 		}
-    
+ ```
+ 
     How to call:
-    
+    ```csharp
     //Send the id or the identity of the instance to be updated and the new atributes values
     Model.CRUD.mdoel_artista_.Update(1, 2, 1, "Test2");
-    
+ ```
+ 
     - DELETE (delete instance in the data base)
     
     Generated code:
-    
+    ```csharp
     static public bool Delete(int id_)
 		{
 			try
@@ -148,10 +151,13 @@ Generated code:
 			}
 			return false;
 		}
-    
+		```
+		
+        How to call:
+    ```csharp    
     //Send the id or the identity of the instance to be deleted
     Model.CRUD.mdoel_artista_.Update(1, 2, 1, "Test2");
-   
+   ```
    THE END :D! 
    ENJOY!
     
