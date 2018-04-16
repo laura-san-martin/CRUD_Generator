@@ -1,5 +1,4 @@
-<a name="top"/>
-
+<a name="top"/>		
 # CRUD_Generator
 Code to read the Link to SQL auto generated types and create a CRUD class for each one of them.
 
@@ -220,5 +219,3 @@ and it was found in this Stack Overflow [thread](https://stackoverflow.com/quest
 [*Laura San Martin*](https://github.com/laurexsan/)	
 
 lauragabrielasan@gmail.com
-
-[To top](#top)
