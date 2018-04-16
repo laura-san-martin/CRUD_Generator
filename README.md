@@ -40,6 +40,8 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 ### This are my files:
 ![alt text](https://github.com/laurexsan/CRUD_Generator/blob/master/Misc/01.jpg)
 
+[To top](#top)
+
 <a name="database"/>
 
 ### This is my test data base:
@@ -205,11 +207,7 @@ Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 
 [To top](#top)
 
-
 <a name="contributions"/>
-
-[To top](#top)
-
 
 # Contributions
 
@@ -221,10 +219,7 @@ and it was found in this Stack Overflow [thread](https://stackoverflow.com/quest
 **THE END :D!** 
 **ENJOY!**
 
-[*Laura San Martin*](https://github.com/laurexsan/)
+[*Laura San Martin*](https://github.com/laurexsan/)	
 lauragabrielasan@gmail.com
 
-
 [To top](#top)
-
-
