@@ -5,6 +5,7 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 # Table of Contents	
 * [How to use](#howto)	
+* [Observations](#observations)
 * [Exemples](#exemples)	
 	* [Files](#files)	
    	* [Data Base](#database)		
@@ -27,7 +28,16 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 5. Open the folder where the clases where save and insert them into your project.
 
-6. Done! Now follows some exemples of how to use your new classes!
+6. Done! You can delete the func call in your main.
+
+<a name="observations"/>
+
+# Observations 
+
+This code is always assuming:
+
+* that all the tables have a **primary key** atribute, this PK is a auto incremented non nullable int and its always the **first** atrribute of a table.
+* that the first **type** in your **design.cs** file (created by Linq to SQL) is de **Data Context** to access the data base.
 
 <a name="exemples"/>
 
