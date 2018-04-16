@@ -47,7 +47,7 @@ namespace LauraStuffs
                     //It creates its own namespace adding the word CRUD after the namespace given
                     sb.AppendLine("namespace " + namespaceName + ".CRUD");
                     sb.AppendLine("{ ");
-                    sb.AppendLine(tab + "class mdoel_" + types[i].Name);
+                    sb.AppendLine(tab + "class model_" + types[i].Name);
                     sb.AppendLine(tab + "{");
 
                     //This vars will help build the params to the Create and Update functions
