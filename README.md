@@ -12,8 +12,9 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 [Delete](###delete)
 [Contributions](#contributions)
 
+<a name="howto"/>
 
-# How to use <a name="howto"/>
+# How to use 
 1. Copy the folder CODE to your project.
 
 2. Create a namespace to be used ONLY by the designer.cs created by the Linq to SQL clases, or else will create a CRUD file to every type inside the namespace given.
@@ -26,17 +27,22 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 6. Done! Now follows some exemples of how to use your new classes!
 
-# Exemples <a name="exemples"/>
+<a name="exemples"/>
+
+# Exemples 
 
 <a name="files"/>
+
 ### This are my files:
 ![alt text](https://github.com/laurexsan/CRUD_Generator/blob/master/Misc/01.jpg)
 
 <a name="database"/>
+
 ### This is my test data base:
 ![alt text](https://github.com/laurexsan/CRUD_Generator/blob/master/Misc/02.jpg)
 
 <a name="create"/>
+
 ## CREATE (inserting into your data base)
 
 Generated code:
@@ -77,6 +83,7 @@ Model.CRUD.model_artista_.Create(1, null, "Test");
 ```
 
 <a name="read"/>
+
 ## READ (select data)
 
 Generated code:
@@ -111,6 +118,7 @@ Model.CRUD.model_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraS
 ```
 
 <a name="update"/>
+
 ## UPDATE (update atribute values)
     
     Generated code:
@@ -151,6 +159,7 @@ Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 ```
 
 <a name="delete"/>
+
 ## DELETE (delete instance in the data base)
 
 Generated code:
@@ -184,6 +193,7 @@ Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 ```
 
 <a name="contributions"/>
+
 # Contributions
 
 The ExpressionPredicateBuilder.cs file Was created by this guy [user3411327](https://stackoverflow.com/users/3411327/user3411327) 
