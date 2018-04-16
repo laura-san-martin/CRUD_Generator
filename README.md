@@ -6,12 +6,12 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 # Table of Contents	
 * [How to use](#howto)	
 * [Exemples](#exemples)	
-⋅⋅* [Files](#files)	
-⋅⋅* [Data Base](#database)		
-⋅⋅* [Create](#create)	
-⋅⋅* [Read](#read)		
-⋅⋅* [Update](#update)		
-⋅⋅* [Delete](#delete)		
+  _ [Files](#files)	
+  _ [Data Base](#database)		
+  _ [Create](#create)	
+  _ [Read](#read)		
+  _ [Update](#update)		
+  _ [Delete](#delete)		
 * [Contributions](#contributions) 	
 
 <a name="howto"/>
