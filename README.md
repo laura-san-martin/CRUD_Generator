@@ -23,35 +23,36 @@ This are my files:
 
 Generated code:
 ```csharp
-		static public Misc.Model.artista_ Create(int projeto_atual_id_, int? usuario_id_, string titulo_)
+static public Misc.Model.artista_ Create(int projeto_atual_id_, int? usuario_id_, string titulo_)
+{
+    	//See if finds a equal instance in the data base, if true, return it, or else insert a new one
+	Misc.Model.artista_ artista_OBJ = ReadWhereFirst(new QueryConditions(projeto_atual_id_, OperatorComparer.Equals, "projeto_atual_id_"), new QueryConditions(usuario_id_, OperatorComparer.Equals, "usuario_id_"), new QueryConditions(titulo_, OperatorComparer.Equals, "titulo_"));
+
+	if (artista_OBJ == null)
+	{
+		try
 		{
-    //See if finds a equal instance in the data base, if true, return it, or else insert a new one
-			Misc.Model.artista_ artista_OBJ = ReadWhereFirst(new QueryConditions(projeto_atual_id_, OperatorComparer.Equals, "projeto_atual_id_"), new QueryConditions(usuario_id_, OperatorComparer.Equals, "usuario_id_"), new QueryConditions(titulo_, OperatorComparer.Equals, "titulo_"));
+			SistemaVotacaoDBDataContext context = new SistemaVotacaoDBDataContext();
 
-			if (artista_OBJ == null)
-			{
-				try
-				{
-					SistemaVotacaoDBDataContext context = new SistemaVotacaoDBDataContext();
+			artista_OBJ = new Misc.Model.artista_();
 
-					artista_OBJ = new Misc.Model.artista_();
+			artista_OBJ.projeto_atual_id_ = projeto_atual_id_;
+			artista_OBJ.usuario_id_ = usuario_id_;
+			artista_OBJ.titulo_ = titulo_;
 
-					artista_OBJ.projeto_atual_id_ = projeto_atual_id_;
-					artista_OBJ.usuario_id_ = usuario_id_;
-					artista_OBJ.titulo_ = titulo_;
-
-					context.artista_.InsertOnSubmit(artista_OBJ);
-					context.SubmitChanges();
-					return artista_OBJ;
-				}
-				catch (Exception error)
-				{
-					Console.WriteLine("EXCEPTION!!! " + "Classe: " + "mdl_artista_" + " Metódo: " + "Create");
-				}
-			}
+			context.artista_.InsertOnSubmit(artista_OBJ);
+			context.SubmitChanges();
 			return artista_OBJ;
 		}
+		catch (Exception error)
+		{
+			Console.WriteLine("EXCEPTION!!! " + "Classe: " + "mdl_artista_" + " Metódo: " + "Create");
+		}
+	}
+	return artista_OBJ;
+}
 ```
+
 How to call: 
 ```csharp
 CRUD.mdoel_artista_.Create(1, null, "Test");
@@ -61,103 +62,105 @@ CRUD.mdoel_artista_.Create(1, null, "Test");
 
 Generated code:
 ```csharp
-		static public IEnumerable<Misc.Model.artista_> ReadAllWhere(params QueryConditions[] conditions)
-		{
-			try
-			{
-				SistemaVotacaoDBDataContext context = new SistemaVotacaoDBDataContext();
+static public IEnumerable<Misc.Model.artista_> ReadAllWhere(params QueryConditions[] conditions)
+{
+	try
+	{
+		SistemaVotacaoDBDataContext context = new SistemaVotacaoDBDataContext();
 
-				IQueryable <Misc.Model.artista_> query = context.artista_;
-        
-        //This generate lambda expressions form the QueryConditions array
-				foreach (QueryConditions q in conditions)
-					query = query.Where(ExpressionBuilder.BuildPredicate<artista_>(q.value, q.comparer, q.properties));
+		IQueryable <Misc.Model.artista_> query = context.artista_;
 
-				if (query.Any())
-					return query;
-				}
-			catch (Exception erro)
-			{
-				Console.WriteLine("EXCEPTION!!! " + "Classe: " + "mdl_artista_" + " Metódo: " + "ReadAllWhere");
-			}
-			return null;
+		//This generate lambda expressions form the QueryConditions array
+		foreach (QueryConditions q in conditions)
+			query = query.Where(ExpressionBuilder.BuildPredicate<artista_>(q.value, q.comparer, q.properties));
+
+		if (query.Any())
+			return query;
 		}
-  ```  
-    How to call:
-    ```csharp
-    //QueryConditions recieves the value to compare, te type of comparison and the name of the atribute to compare as params
-    Model.CRUD.mdoel_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraStuffs.OperatorComparer.Equals, "id_"));
- ```   
-    - UPDATE (update atribute values)
+	catch (Exception erro)
+	{
+		Console.WriteLine("EXCEPTION!!! " + "Classe: " + "mdl_artista_" + " Metódo: " + "ReadAllWhere");
+	}
+	return null;
+}
+```
+
+How to call:
+```csharp
+//QueryConditions recieves the value to compare, te type of comparison and the name of the atribute to compare as params
+Model.CRUD.mdoel_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraStuffs.OperatorComparer.Equals, "id_"));
+```
+ - UPDATE (update atribute values)
     
     Generated code:
-    ```csharp
-    		static public Misc.Model.artista_ Update(int id_, int projeto_atual_id_, int? usuario_id_, string titulo_)
+```csharp
+static public Misc.Model.artista_ Update(int id_, int projeto_atual_id_, int? usuario_id_, string titulo_)
+{
+	try
+	{
+		SistemaVotacaoDBDataContext context = new SistemaVotacaoDBDataContext();
+
+		var query = from u in context.artista_ where u.id_ == id_ select u;
+
+		//If the instance esxists in the database, update it and return the new value, else return null
+		if (query.Any())
 		{
-			try
-			{
-				SistemaVotacaoDBDataContext context = new SistemaVotacaoDBDataContext();
+			Misc.Model.artista_ artista_OBJ = query.First();
 
-				var query = from u in context.artista_ where u.id_ == id_ select u;
+			artista_OBJ.projeto_atual_id_ = projeto_atual_id_;
+			artista_OBJ.usuario_id_ = usuario_id_;
+			artista_OBJ.titulo_ = titulo_;
 
-        //If the instance esxists in the database, update it and return the new value, else return null
-				if (query.Any())
-				{
-					Misc.Model.artista_ artista_OBJ = query.First();
-
-					artista_OBJ.projeto_atual_id_ = projeto_atual_id_;
-					artista_OBJ.usuario_id_ = usuario_id_;
-					artista_OBJ.titulo_ = titulo_;
-
-					context.SubmitChanges();
-					return artista_OBJ;
-				}
-			}
-			catch (Exception error)
-			{
-				Console.WriteLine("EXCEPTION!!! " + "Classe: " + "mdl_artista_" + " Metódo: " + "Update");
-			}
-			return null;
+			context.SubmitChanges();
+			return artista_OBJ;
 		}
+	}
+	catch (Exception error)
+	{
+		Console.WriteLine("EXCEPTION!!! " + "Classe: " + "mdl_artista_" + " Metódo: " + "Update");
+	}
+	return null;
+}
  ```
  
-    How to call:
-    ```csharp
-    //Send the id or the identity of the instance to be updated and the new atributes values
-    Model.CRUD.mdoel_artista_.Update(1, 2, 1, "Test2");
- ```
+How to call:
+```csharp
+//Send the id or the identity of the instance to be updated and the new atributes values
+Model.CRUD.mdoel_artista_.Update(1, 2, 1, "Test2");
+```
  
-    - DELETE (delete instance in the data base)
-    
-    Generated code:
-    ```csharp
-    static public bool Delete(int id_)
-		{
-			try
-			{
-				SistemaVotacaoDBDataContext context = new SistemaVotacaoDBDataContext();
+- DELETE (delete instance in the data base)
 
-				var query = from u in context.artista_ where u.id_ == id_ select u;
+Generated code:
+```csharp
+static public bool Delete(int id_)
+{
+	try
+	{
+		SistemaVotacaoDBDataContext context = new SistemaVotacaoDBDataContext();
 
-				if (query.Any())
-			{
-					context.artista_.DeleteOnSubmit(query.First());
-			return true;
-			}
-			}
-			catch (Exception error)
-			{
-				Console.WriteLine("EXCEPTION!!! " + "Classe: " + "mdl_artista_" + " Metódo: " + "Delete");
-			}
-			return false;
-		}
-		```
+		var query = from u in context.artista_ where u.id_ == id_ select u;
+
+		if (query.Any())
+	{
+			context.artista_.DeleteOnSubmit(query.First());
+	return true;
+	}
+	}
+	catch (Exception error)
+	{
+		Console.WriteLine("EXCEPTION!!! " + "Classe: " + "mdl_artista_" + " Metódo: " + "Delete");
+	}
+	return false;
+}
+```
 		
-        How to call:
-    ```csharp    
-    //Send the id or the identity of the instance to be deleted
-    Model.CRUD.mdoel_artista_.Update(1, 2, 1, "Test2");
-   ```
-   THE END :D! 
-   ENJOY!
+How to call:
+```csharp    
+//Send the id or the identity of the instance to be deleted
+Model.CRUD.mdoel_artista_.Update(1, 2, 1, "Test2");
+```
+
+THE END :D! 
+ENJOY!
     
