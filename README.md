@@ -14,12 +14,13 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 6. Done! Now follows some exemples of how to use your new classes!
 
+# Exemples
 This is my test data base:
 
 This are my files:
 
 
-- CREATE (inserting into your data base)
+## CREATE (inserting into your data base)
 
 Generated code:
 ```csharp
@@ -58,7 +59,7 @@ How to call:
 CRUD.mdoel_artista_.Create(1, null, "Test");
 ```
 
-- READ (select data)
+## READ (select data)
 
 Generated code:
 ```csharp
@@ -90,7 +91,7 @@ How to call:
 //QueryConditions recieves the value to compare, te type of comparison and the name of the atribute to compare as params
 Model.CRUD.mdoel_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraStuffs.OperatorComparer.Equals, "id_"));
 ```
- - UPDATE (update atribute values)
+## UPDATE (update atribute values)
     
     Generated code:
 ```csharp
@@ -129,7 +130,7 @@ How to call:
 Model.CRUD.mdoel_artista_.Update(1, 2, 1, "Test2");
 ```
  
-- DELETE (delete instance in the data base)
+## DELETE (delete instance in the data base)
 
 Generated code:
 ```csharp
