@@ -1,7 +1,7 @@
 # CRUD_Generator
 Code to read the Link to SQL auto generated types and create a CRUD class for each one of them.
 
-##### Table of Contents  
+# Table of Contents  
 [How to use](#howto)  
 [Exemples](#exemples)
 [Files](##files)  
@@ -11,10 +11,9 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 [Update](###update)  
 [Delete](###delete)
 [Contributions](#contributions)
-...snip...
 
-<a name="howto"/>
-# How to use
+
+# How to use <a name="howto"/>
 1. Copy the folder CODE to your project.
 
 2. Create a namespace to be used ONLY by the designer.cs created by the Linq to SQL clases, or else will create a CRUD file to every type inside the namespace given.
@@ -27,8 +26,7 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 6. Done! Now follows some exemples of how to use your new classes!
 
-<a name="exemples"/>
-# Exemples
+# Exemples <a name="exemples"/>
 
 <a name="files"/>
 ### This are my files:
