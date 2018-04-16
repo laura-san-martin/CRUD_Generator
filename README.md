@@ -2,15 +2,15 @@
 Code to read the Link to SQL auto generated types and create a CRUD class for each one of them.
 
 # Table of Contents  
-[How to use](#howto)  
-[Exemples](#exemples)
-[Files](##files)  
-[Data Base](##database)  
-[Create](###create)  
-[Read](###read)
-[Update](###update)  
-[Delete](###delete)
-[Contributions](#contributions)
+[How to use](#howto) 
+[Exemples](#exemples) 
+[Files](##files) 
+[Data Base](##database) 
+[Create](###create) 
+[Read](###read) 
+[Update](###update)   
+[Delete](###delete) 
+[Contributions](#contributions) 
 
 <a name="howto"/>
 
