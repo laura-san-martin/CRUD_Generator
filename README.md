@@ -56,7 +56,7 @@ static public Misc.Model.artista_ Create(int projeto_atual_id_, int? usuario_id_
 
 How to call: 
 ```csharp
-CRUD.mdoel_artista_.Create(1, null, "Test");
+Model.CRUD.model_artista_.Create(1, null, "Test");
 ```
 
 ## READ (select data)
@@ -89,7 +89,7 @@ static public IEnumerable<Misc.Model.artista_> ReadAllWhere(params QueryConditio
 How to call:
 ```csharp
 //QueryConditions recieves the value to compare, te type of comparison and the name of the atribute to compare as params
-Model.CRUD.mdoel_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraStuffs.OperatorComparer.Equals, "id_"));
+Model.CRUD.model_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraStuffs.OperatorComparer.Equals, "id_"));
 ```
 ## UPDATE (update atribute values)
     
@@ -127,7 +127,7 @@ static public Misc.Model.artista_ Update(int id_, int projeto_atual_id_, int? us
 How to call:
 ```csharp
 //Send the id or the identity of the instance to be updated and the new atributes values
-Model.CRUD.mdoel_artista_.Update(1, 2, 1, "Test2");
+Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 ```
  
 ## DELETE (delete instance in the data base)
@@ -159,7 +159,7 @@ static public bool Delete(int id_)
 How to call:
 ```csharp    
 //Send the id or the identity of the instance to be deleted
-Model.CRUD.mdoel_artista_.Update(1, 2, 1, "Test2");
+Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 ```
 
 THE END :D! 
