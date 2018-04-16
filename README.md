@@ -1,15 +1,17 @@
+<a name="top"/>
+
 # CRUD_Generator
 Code to read the Link to SQL auto generated types and create a CRUD class for each one of them.
 
 # Table of Contents	
 * [How to use](#howto)	
 * [Exemples](#exemples)	
-* [Files](#files)	
-* [Data Base](#database)		
-* [Create](#create)	
-* [Read](#read)		
-* [Update](#update)		
-* [Delete](#delete)		
+⋅⋅* [Files](#files)	
+⋅⋅* [Data Base](#database)		
+⋅⋅* [Create](#create)	
+⋅⋅* [Read](#read)		
+⋅⋅* [Update](#update)		
+⋅⋅* [Delete](#delete)		
 * [Contributions](#contributions) 	
 
 <a name="howto"/>
@@ -27,6 +29,8 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 6. Done! Now follows some exemples of how to use your new classes!
 
+[To top](#top)
+
 <a name="exemples"/>
 
 # Exemples 
@@ -40,6 +44,8 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 ### This is my test data base:
 ![alt text](https://github.com/laurexsan/CRUD_Generator/blob/master/Misc/02.jpg)
+
+[To top](#top)
 
 <a name="create"/>
 
@@ -81,6 +87,7 @@ How to call:
 ```csharp
 Model.CRUD.model_artista_.Create(1, null, "Test");
 ```
+[To top](#top)
 
 <a name="read"/>
 
@@ -116,6 +123,8 @@ How to call:
 //QueryConditions recieves the value to compare, te type of comparison and the name of the atribute to compare as params
 Model.CRUD.model_artista_.ReadAllWhere(new LauraStuffs.QueryConditions(1, LauraStuffs.OperatorComparer.Equals, "id_"));
 ```
+[To top](#top)
+
 
 <a name="update"/>
 
@@ -158,6 +167,8 @@ How to call:
 Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 ```
 
+[To top](#top)
+
 <a name="delete"/>
 
 ### DELETE (delete instance in the data base)
@@ -192,7 +203,13 @@ How to call:
 Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 ```
 
+[To top](#top)
+
+
 <a name="contributions"/>
+
+[To top](#top)
+
 
 # Contributions
 
@@ -206,3 +223,8 @@ and it was found in this Stack Overflow [thread](https://stackoverflow.com/quest
 
 [*Laura San Martin*](https://github.com/laurexsan/)
 lauragabrielasan@gmail.com
+
+
+[To top](#top)
+
+
