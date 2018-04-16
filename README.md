@@ -10,7 +10,8 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 [Read](###read)
 [Update](###update)  
 [Delete](###delete)
-[Contributions](#contributions) 
+[Contributions](#contributions)
+...snip...
 
 <a name="howto"/>
 # How to use
