@@ -126,7 +126,7 @@ namespace LauraStuffs
                     sb.AppendLine(tab + tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + tab + "catch (Exception error)");
                     sb.AppendLine(tab + tab + tab + tab + "{");
-                    sb.AppendLine(tab + tab + tab + tab + tab + "Console.WriteLine(\"EXCEPTION!!! \" + \"Classe: \" + \"mdl_" + types[i].Name + "\" + \" Metódo: \" + \"Create\");");
+                    sb.AppendLine(tab + tab + tab + tab + tab + "Console.WriteLine(\"EXCEPTION!!! \" + \"Class: \" + \"mdl_" + types[i].Name + "\" + \" Function: \" + \"Create\");");
                     sb.AppendLine(tab + tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + "return " + objName + ";");
@@ -174,7 +174,7 @@ namespace LauraStuffs
                     sb.AppendLine(tab + tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + "catch (Exception erro)");
                     sb.AppendLine(tab + tab + tab + "{");
-                    sb.AppendLine(tab + tab + tab + tab + "Console.WriteLine(\"EXCEPTION!!! \" + \"Classe: \" + \"mdl_" + types[i].Name + "\" + \" Metódo: \" + \"ReadAllWhere\");");
+                    sb.AppendLine(tab + tab + tab + tab + "Console.WriteLine(\"EXCEPTION!!! \" + \"Class: \" + \"mdl_" + types[i].Name + "\" + \" Function: \" + \"ReadAllWhere\");");
                     sb.AppendLine(tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + "return null;");
                     sb.AppendLine(tab + tab + "}");
@@ -200,7 +200,7 @@ namespace LauraStuffs
                     sb.AppendLine(tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + "catch (Exception error)");
                     sb.AppendLine(tab + tab + tab + "{");
-                    sb.AppendLine(tab + tab + tab + tab + "Console.WriteLine(\"EXCEPTION!!! \" + \"Classe: \" + \"mdl_" + types[i].Name + "\" + \" Metódo: \" + \"Update\");");
+                    sb.AppendLine(tab + tab + tab + tab + "Console.WriteLine(\"EXCEPTION!!! \" + \"Class: \" + \"mdl_" + types[i].Name + "\" + \" Function: \" + \"Update\");");
                     sb.AppendLine(tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + "return null;");
                     sb.AppendLine(tab + tab + "}");
@@ -223,7 +223,7 @@ namespace LauraStuffs
                     sb.AppendLine(tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + "catch (Exception error)");
                     sb.AppendLine(tab + tab + tab + "{");
-                    sb.AppendLine(tab + tab + tab + tab + "Console.WriteLine(\"EXCEPTION!!! \" + \"Classe: \" + \"mdl_" + types[i].Name + "\" + \" Metódo: \" + \"Delete\");");
+                    sb.AppendLine(tab + tab + tab + tab + "Console.WriteLine(\"EXCEPTION!!! \" + \"Class: \" + \"mdl_" + types[i].Name + "\" + \" Function: \" + \"Delete\");");
                     sb.AppendLine(tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + "return false;");
                     sb.AppendLine(tab + tab + "}");
