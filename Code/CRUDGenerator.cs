@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,9 +6,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LauraStuffs
+namespace LauraStuffs.CRUDGenerator
 {
-    class CRUDGenerator
+    class Generator
     {
         public static void Generate(string namespaceName, string dirName)
         {
@@ -42,7 +42,7 @@ namespace LauraStuffs
                     sb.AppendLine("using System.Linq;");
                     sb.AppendLine("using System.Text;");
                     sb.AppendLine("using System.Threading.Tasks;");
-                    sb.AppendLine("using LauraStuffs;");
+                    sb.AppendLine("using LauraStuffs.CRUDGenerator;");
 
                     //It creates its own namespace adding the word CRUD after the namespace given
                     sb.AppendLine("namespace " + namespaceName + ".CRUD");
@@ -54,62 +54,57 @@ namespace LauraStuffs
                     string param = "";
                     string queryCondition = "";
                     string objName = types[i].Name + "OBJ";
-                    StringBuilder sbProperties = new StringBuilder();
-                    PropertyInfo[] proper = types[i].GetProperties();
+                    StringBuilder sbPropertiesAsParams = new StringBuilder();
+                    string propertiesToPassParams = "";
+                    PropertyInfo[] properties = types[i].GetProperties();
+
+                    string primaryKeyPropertyAsParam = "";
+                    string primaryKeyToPassParams = "";
+                    string keyConditions = "";
 
                     //Loops through all atributes of the types
-                    foreach (var prop in proper)
+                    foreach (var prop in properties)
                     {
-                        if (prop.Name != "id_" && prop.PropertyType.Namespace != namespaceName && prop.PropertyType.FullName.IndexOf("entity", StringComparison.InvariantCultureIgnoreCase) < 0)
+                        if(prop.CustomAttributes.First().ToString().IndexOf("IDENTITY", StringComparison.InvariantCultureIgnoreCase) >= 0 && 
+                           prop.CustomAttributes.First().ToString().IndexOf("IsPrimaryKey = True", StringComparison.InvariantCultureIgnoreCase) >= 0 &&
+                           prop.CustomAttributes.First().ToString().IndexOf("IsDbGenerated = True", StringComparison.InvariantCultureIgnoreCase) >= 0)
                         {
-                            string propType = "string";
+                            if (!string.IsNullOrEmpty(primaryKeyPropertyAsParam))
+                                primaryKeyPropertyAsParam += ", ";
 
-                            //This checks what type the atribute is, looking for common types used in the data base
-                            if (!prop.PropertyType.FullName.Contains("string"))
-                            {
-                                if (prop.PropertyType.FullName.IndexOf("bool", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType = "bool";
-                                else if (prop.PropertyType.FullName.IndexOf("byte", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType = "byte";
-                                else if (prop.PropertyType.FullName.IndexOf("int", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType = "int";
-                                else if (prop.PropertyType.FullName.IndexOf("double", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType = "double";
-                                else if (prop.PropertyType.FullName.IndexOf("decimal", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType = "decimal";
-                                else if (prop.PropertyType.FullName.IndexOf("binary", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType = "binary";
-                                else if (prop.PropertyType.FullName.IndexOf("DateTime", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType = "DateTime";
-                                else if (prop.PropertyType.FullName.IndexOf("TimeSpan", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType = "TimeSpan";
-                                else if (prop.PropertyType.FullName.IndexOf("DateTimeOffset", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType = "DateTimeOffset";
-                                else if (prop.PropertyType.FullName.IndexOf("Guid", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType = "Guid";
-                                else if (prop.PropertyType.FullName.IndexOf("char", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType = "char";
+                            if (!string.IsNullOrEmpty(primaryKeyToPassParams))
+                                primaryKeyToPassParams += ", ";
 
-                                if (prop.PropertyType.FullName.IndexOf("null", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                    propType += "?";
-                            }
+                            if (!string.IsNullOrEmpty(keyConditions))
+                                keyConditions += " && ";
+
+                            primaryKeyPropertyAsParam += GetType(prop) + " " + prop.Name;
+                            primaryKeyToPassParams += objName + "." + prop.Name;
+                            keyConditions += "u." + prop.Name + " == " + prop.Name;
+                        }
+                        else if (prop.PropertyType.Namespace != namespaceName && prop.PropertyType.FullName.IndexOf("entity", StringComparison.InvariantCultureIgnoreCase) < 0)
+                        {
+                            string propType = GetType(prop);
 
                             param += propType + " " + prop.Name + ", ";
                             queryCondition += "new QueryConditions(" + prop.Name + ", OperatorComparer.Equals, \"" + prop.Name + "\"), ";
-                            sbProperties.AppendLine(tab + tab + tab + tab + tab + objName + "." + prop.Name + " = " + prop.Name + ";");
+                            sbPropertiesAsParams.AppendLine(tab + tab + tab + tab + tab + objName + "." + prop.Name + " = " + prop.Name + ";");
+
+                            if (!string.IsNullOrEmpty(propertiesToPassParams))
+                                propertiesToPassParams += ", ";
+                            propertiesToPassParams += objName + "." + prop.Name;
                         }
+
                     }
 
                     //Write a auxiliar params code to be useed further
                     param = param.Substring(0, param.Length - 2);
                     queryCondition = queryCondition.Substring(0, queryCondition.Length - 2);
-                    param += ")";
-                    queryCondition += ")";
 
                     //Writes the CREATE function
-                    sb.AppendLine(tab + tab + "static public " + namespaceName + "." + types[i].Name + " Create(" + param);
+                    sb.AppendLine(tab + tab + "static public " + namespaceName + "." + types[i].Name + " Create(" + param + ")");
                     sb.AppendLine(tab + tab + "{");
-                    sb.AppendLine(tab + tab + tab + namespaceName + "." + types[i].Name + " " + objName + " = ReadWhereFirst(" + queryCondition + ";");
+                    sb.AppendLine(tab + tab + tab + namespaceName + "." + types[i].Name + " " + objName + " = ReadWhereFirst(" + queryCondition + ");");
                     sb.AppendLine("");
                     sb.AppendLine(tab + tab + tab + "if (" + objName + " == null)");
                     sb.AppendLine(tab + tab + tab + "{");
@@ -119,7 +114,7 @@ namespace LauraStuffs
                     sb.AppendLine("");
                     sb.AppendLine(tab + tab + tab + tab + tab + objName + " = new " + namespaceName + "." + types[i].Name + "();");
                     sb.AppendLine("");
-                    sb.AppendLine(sbProperties.ToString());
+                    sb.AppendLine(sbPropertiesAsParams.ToString());
                     sb.AppendLine(tab + tab + tab + tab + tab + "context." + types[i].Name + ".InsertOnSubmit(" + objName + ");");
                     sb.AppendLine(tab + tab + tab + tab + tab + "context.SubmitChanges();");
                     sb.AppendLine(tab + tab + tab + tab + tab + "return " + objName + ";");
@@ -130,6 +125,13 @@ namespace LauraStuffs
                     sb.AppendLine(tab + tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + "return " + objName + ";");
+                    sb.AppendLine(tab + tab + "}");
+                    sb.AppendLine("");
+
+                    //Writes a secondary CREATE function the calls the one written above
+                    sb.AppendLine(tab + tab + "static public " + namespaceName + "." + types[i].Name + " Create(" + namespaceName + "." + types[i].Name + " " + objName + ")");
+                    sb.AppendLine(tab + tab + "{");
+                    sb.AppendLine(tab + tab + tab + "return Create(" + propertiesToPassParams +");");
                     sb.AppendLine(tab + tab + "}");
                     sb.AppendLine("");
 
@@ -181,19 +183,19 @@ namespace LauraStuffs
                     sb.AppendLine("");
 
                     //Writes the UPDATE function
-                    sb.AppendLine(tab + tab + "static public " + namespaceName + "." + types[i].Name + " Update(int id_, " + param);
+                    sb.AppendLine(tab + tab + "static public " + namespaceName + "." + types[i].Name + " Update(" + primaryKeyPropertyAsParam + ", " + param + ")");
                     sb.AppendLine(tab + tab + "{");
                     sb.AppendLine(tab + tab + tab + "try");
                     sb.AppendLine(tab + tab + tab + "{");
                     sb.AppendLine(tab + tab + tab + tab + types[0].Name + " context = new " + types[0].Name + "();");
                     sb.AppendLine("");
-                    sb.AppendLine(tab + tab + tab + tab + "var query = from u in context." + types[i].Name + " where u.id_ == id_ select u;");
+                    sb.AppendLine(tab + tab + tab + tab + "var query = from u in context." + types[i].Name + " where " + keyConditions + " select u;");
                     sb.AppendLine("");
                     sb.AppendLine(tab + tab + tab + tab + "if (query.Any())");
                     sb.AppendLine(tab + tab + tab + tab + "{");
                     sb.AppendLine(tab + tab + tab + tab + tab + namespaceName + "." + types[i].Name + " " + objName + " = query.First();");
                     sb.AppendLine("");
-                    sb.AppendLine(sbProperties.ToString());
+                    sb.AppendLine(sbPropertiesAsParams.ToString());
                     sb.AppendLine(tab + tab + tab + tab + tab + "context.SubmitChanges();");
                     sb.AppendLine(tab + tab + tab + tab + tab + "return " + objName + ";");
                     sb.AppendLine(tab + tab + tab + tab + "}");
@@ -206,14 +208,21 @@ namespace LauraStuffs
                     sb.AppendLine(tab + tab + "}");
                     sb.AppendLine("");
 
+                    //Writes a secondary UPDATE function the calls the one written above
+                    sb.AppendLine(tab + tab + "static public " + namespaceName + "." + types[i].Name + " Update(" + namespaceName + "." + types[i].Name + " " + objName + ")");
+                    sb.AppendLine(tab + tab + "{");
+                    sb.AppendLine(tab + tab + tab + "return Update(" + primaryKeyToPassParams + ", " + propertiesToPassParams + ");");
+                    sb.AppendLine(tab + tab + "}");
+                    sb.AppendLine("");
+
                     //Writes the DELETE function
-                    sb.AppendLine(tab + tab + "static public bool Delete(int id_)");
+                    sb.AppendLine(tab + tab + "static public bool Delete("+ primaryKeyPropertyAsParam +")");
                     sb.AppendLine(tab + tab + "{");
                     sb.AppendLine(tab + tab + tab + "try");
                     sb.AppendLine(tab + tab + tab + "{");
                     sb.AppendLine(tab + tab + tab + tab + types[0].Name + " context = new " + types[0].Name + "();");
                     sb.AppendLine("");
-                    sb.AppendLine(tab + tab + tab + tab + "var query = from u in context." + types[i].Name + " where u.id_ == id_ select u;");
+                    sb.AppendLine(tab + tab + tab + tab + "var query = from u in context." + types[i].Name + " where " + keyConditions + " select u;");
                     sb.AppendLine("");
                     sb.AppendLine(tab + tab + tab + tab + "if (query.Any())");
                     sb.AppendLine(tab + tab + tab + "{");
@@ -227,8 +236,17 @@ namespace LauraStuffs
                     sb.AppendLine(tab + tab + tab + "}");
                     sb.AppendLine(tab + tab + tab + "return false;");
                     sb.AppendLine(tab + tab + "}");
+                    sb.AppendLine("");
+                    //Writes a secondary DELETE function the calls the one written above
+                    sb.AppendLine(tab + tab + "static public bool Delete(" + namespaceName + "." + types[i].Name + " " + objName + ")");
+                    sb.AppendLine(tab + tab + "{");
+                    sb.AppendLine(tab + tab + tab + "return Delete(" + primaryKeyToPassParams + ");");
+                    sb.AppendLine(tab + tab + "}");
+                    //Closes the code
                     sb.AppendLine(tab + "}");
                     sb.AppendLine("}");
+
+
 
                     //Save the code file
                     string filePath = dirName + " / " + "model_" + types[i].Name + ".cs";
@@ -236,6 +254,44 @@ namespace LauraStuffs
 
                 }
             }
+        }
+
+        //this function converts the type used in SLQ to the equivalent type in C#
+        private static string GetType(PropertyInfo prop)
+        {
+            string propType = "string";
+
+            //This checks what type the atribute is, looking for common types used in the data base
+            if (!prop.PropertyType.FullName.Contains("string"))
+            {
+                if (prop.PropertyType.FullName.IndexOf("bool", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType = "bool";
+                else if (prop.PropertyType.FullName.IndexOf("byte", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType = "byte";
+                else if (prop.PropertyType.FullName.IndexOf("int", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType = "int";
+                else if (prop.PropertyType.FullName.IndexOf("double", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType = "double";
+                else if (prop.PropertyType.FullName.IndexOf("decimal", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType = "decimal";
+                else if (prop.PropertyType.FullName.IndexOf("binary", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType = "binary";
+                else if (prop.PropertyType.FullName.IndexOf("DateTime", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType = "DateTime";
+                else if (prop.PropertyType.FullName.IndexOf("TimeSpan", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType = "TimeSpan";
+                else if (prop.PropertyType.FullName.IndexOf("DateTimeOffset", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType = "DateTimeOffset";
+                else if (prop.PropertyType.FullName.IndexOf("Guid", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType = "Guid";
+                else if (prop.PropertyType.FullName.IndexOf("char", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType = "char";
+
+                if (prop.PropertyType.FullName.IndexOf("null", StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    propType += "?";
+            }
+
+            return propType;
         }
     }
 }
