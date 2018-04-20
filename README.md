@@ -36,7 +36,6 @@ Code to read the Link to SQL auto generated types and create a CRUD class for ea
 
 This code is always assuming:
 
-* that all the tables have a **primary key** atribute, this PK is a auto incremented non nullable int and its always the **first** atrribute of a table.
 * that the first **type** in your **design.cs** file (created by Linq to SQL) is de **Data Context** to access the data base.
 
 <a name="exemples"/>
@@ -91,11 +90,21 @@ static public Misc.Model.artista_ Create(int projeto_atual_id_, int? usuario_id_
 	}
 	return artista_OBJ;
 }
+
+static public Misc.Model.artista_ Create(Misc.Model.artista_ artista_OBJ)
+{
+	return Create(artista_OBJ.projeto_atual_id_, artista_OBJ.usuario_id_, artista_OBJ.titulo_);
+}
 ```
 
 #### How to call: 
 ```csharp
 Model.CRUD.model_artista_.Create(1, null, "Test");
+```
+*OR*
+```csharp    
+//Send the whole object (it will ignores the PKs)
+Model.CRUD.model_artista_.Create(artista_OBJ);
 ```
 [To top](#top)
 
@@ -176,6 +185,11 @@ static public Misc.Model.artista_ Update(int id_, int projeto_atual_id_, int? us
 //Send the id or the identity of the instance to be updated and the new atributes values
 Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
 ```
+*OR*
+```csharp    
+//Send the whole object
+Model.CRUD.model_artista_.Update(artista_OBJ);
+```
 
 [To top](#top)
 
@@ -211,6 +225,11 @@ static public bool Delete(int id_)
 ```csharp    
 //Send the id or the identity of the instance to be deleted
 Model.CRUD.model_artista_.Update(1, 2, 1, "Test2");
+```
+*OR*
+```csharp    
+//Send the whole object
+Model.CRUD.model_artista_.Delete(artista_OBJ);
 ```
 
 [To top](#top)
