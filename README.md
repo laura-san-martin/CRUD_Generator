@@ -178,7 +178,12 @@ static public Misc.Model.artista_ Update(int id_, int projeto_atual_id_, int? us
 	}
 	return null;
 }
- ```
+
+static public Misc.Model.artista_ Update(Misc.Model.artista_ artista_OBJ)
+{
+	return Update(artista_OBJ.id_, artista_OBJ.projeto_atual_id_, artista_OBJ.usuario_id_, artista_OBJ.titulo_);
+}
+```
  
 #### How to call:
 ```csharp
@@ -218,6 +223,11 @@ static public bool Delete(int id_)
 		Console.WriteLine("EXCEPTION!!! " + "Classe: " + "mdl_artista_" + " Metódo: " + "Delete");
 	}
 	return false;
+}
+
+static public bool Delete(Misc.Model.artista_ artista_OBJ)
+{
+	return Delete(artista_OBJ.id_);
 }
 ```
 		
