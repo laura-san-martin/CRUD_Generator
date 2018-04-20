@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Collections;
 using System.Reflection;
 
-namespace LauraStuffs
+namespace LauraStuffs.CRUDGenerator
 {
     //This code was made by https://stackoverflow.com/users/3411327/user3411327
     public enum OperatorComparer
